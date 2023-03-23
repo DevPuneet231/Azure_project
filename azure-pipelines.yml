@@ -46,6 +46,7 @@ steps:
     trivy image $Base_Image
   displayName: 'scan trivy image'
 
-  script: |
+- script: |
+
     trivy config k8s
   displayName: 'scan the kubernetees'  
