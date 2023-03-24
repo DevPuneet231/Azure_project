@@ -65,7 +65,6 @@ steps:
   inputs:
     kubernetesServiceConnection: gke-test
     action: deploy
-    namespace: $(k8sNamespace)
     manifests: |
       k8s/simple/frontend-deployment.yaml
       k8s/simple/service-frontend-lb.yaml
