@@ -51,14 +51,21 @@ steps:
     trivy config k8s
   displayName: 'scan the kubernetees'  
 
-- script: |
-    sudo docker build -t puneetgo/test .
-  displayName: 'building docker image'
+#- script: |
+#    sudo docker build -t puneetgo/test .
+#  displayName: 'building docker image'
 
-- script: |
-    echo $(Docker_hub_password) | sudo docker login --username $(Docker_hub_username) --password-stdin
-    sudo docker push puneetgo/test 
-  displayName: 'login in docker hub and pushing image'  
+#- script: |
+#    echo $(Docker_hub_password) | sudo docker login --username $(Docker_hub_username) --password-stdin
+#    sudo docker push puneetgo/test 
+#  displayName: 'login in docker hub and pushing image'  
+  
+- task: Docker@2
+  inputs:
+    containerRegistry: docker-hub-azure
+    command: 'buildAndPush'
+    Dockerfile:'Dockerfile'
+    tags: puneetgo/test:1.0
   
 - task: KubernetesManifest@0
   displayName: Deploy to Kubernetes cluster
