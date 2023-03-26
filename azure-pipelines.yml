@@ -64,7 +64,7 @@ steps:
   inputs:
     containerRegistry: docker-hub-azure
     command: 'buildAndPush'
-    repository: 'puneetgo'
+    repository: 'puneetgo/test'
     tags: 1.0.1
   
 - task: KubernetesManifest@0
