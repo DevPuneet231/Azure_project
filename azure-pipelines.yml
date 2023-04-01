@@ -50,3 +50,7 @@ steps:
     Base_image=`grep FROM Dockerfile | awk '{print$2}'`
     trivy image Base_image
     displayName: 'Docker image scanning'
+
+- script: |
+    docker build -t puneetgo/test1.0.0 .
+  displayName: 'building docker image'
