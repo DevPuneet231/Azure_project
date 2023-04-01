@@ -56,6 +56,8 @@ steps:
   displayName: 'building docker image'
 
 - script: |
-    echo $(docker_hub_password) | sudo docker login --username $(docker_hub_password) --password--stdin
+    echo $(docker_hub_password) | sudo docker login --username $(docker_hub_username) --password--stdin
     sudo docker push puneetgo/test1.0.0
   displayName: 'docker login and image push'
+
+ 
