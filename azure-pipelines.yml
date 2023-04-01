@@ -48,7 +48,7 @@ steps:
 
 - script: |
     Base_image=`grep FROM Dockerfile | awk '{print$2}'`
-    trivy image Base_image
+    trivy image $Base_image
     displayName: 'Docker image scanning'
 
 - script: |
