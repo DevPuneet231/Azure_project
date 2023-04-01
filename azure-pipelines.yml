@@ -57,3 +57,5 @@ steps:
 
 - script: |
     echo $(docker_hub_password) | sudo docker login --username $(docker_hub_password) --password--stdin
+    sudo docker push puneetgo/test1.0.0
+  displayName: 'docker login and image push'
