@@ -33,3 +33,15 @@ steps:
     sudo npm run build
   displayName: 'npm build'  
   
+- script: |
+    sudo apt-get install trivy
+  displayName: 'Trivy scanner'  
+
+- script: |
+    trivy config Dockerfile
+  displayName: 'Dockerfile scanning'
+
+- script: |
+    Base_image=`grep FROM Dockerfile | awk '{print$2}'`
+    trivy image Base_image
+    displayName: 'Docker image scanning'
