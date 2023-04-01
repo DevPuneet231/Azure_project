@@ -60,4 +60,14 @@ steps:
     sudo docker push puneetgo/test1.0.0
   displayName: 'docker login and image push'
 
+
+- task: KubernetesManifest@0
+  displayName: Deploy to Kubernetes cluster
+  inputs:
+    kubernetesServiceConnection: 'gke-test'
+    action: deploy
+    manifests: |
+      k8s/simple/frontend-deployment.yaml/deployment.yml
+      k8s/simple/frontend-deployment.yaml/service.yml
+
  
