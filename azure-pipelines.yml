@@ -7,13 +7,13 @@ pr:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: redhat-latest
 
 steps:
 
 - script: |
-    sudo apt-get update
-    sudo apt-get install -y npm
+    sudo yum install
+    sudo yum install -y npm
   displayName: 'install and update npm'
 
 - script: |
@@ -52,5 +52,5 @@ steps:
     displayName: 'Docker image scanning'
 
 - script: |
-    docker build -t puneetgo/test1.0.0 .
+    sudo docker build -t puneetgo/test1.0.0 .
   displayName: 'building docker image'
