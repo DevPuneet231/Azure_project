@@ -30,5 +30,6 @@ steps:
 
 - script: |
     sudo install npm
-    sudo npm build
+    sudo npm run build
   displayName: 'npm build'  
+  
