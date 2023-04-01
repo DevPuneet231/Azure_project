@@ -25,6 +25,10 @@ steps:
   displayName: 'npm test'
 
 - script: |
+    sonar-scanner ||true
+  displayName: 'review code'
+
+- script: |
     sudo install npm
     sudo npm build
   displayName: 'npm build'  
