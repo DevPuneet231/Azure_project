@@ -67,7 +67,7 @@ steps:
     kubernetesServiceConnection: gke-test
     action: deploy
     manifests: |
-      k8s/simple/frontend-deployment.yaml/deployment.yml
-      k8s/simple/frontend-deployment.yaml/service.yml
+      k8s/simple/frontend-deployment.yaml
+      k8s/simple/service.yml
 
  
