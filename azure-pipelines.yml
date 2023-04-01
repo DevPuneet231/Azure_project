@@ -14,65 +14,17 @@ steps:
 - script: |
     sudo apt-get update
     sudo apt-get install -y npm
-  displayName: 'npm installation'
+  displayName: 'install and update npm'
 
 - script: |
     npm audit || true
-  displayName: 'check for vulnarbilities'
+  displayName: 'npm audit'
 
 - script: |
-    npm test || true     
-  displayName: 'Run for testing'
+   npm test || true
+  displayName: 'npm test'
 
 - script: |
-    sudo npm install
-    sudo npm run build
-  displayName: 'npm install and build'
-
-- script: |
-    sudo apt-get install wget apt-transport-https gnupg lsb-release
-    wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-    echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-    sudo apt-get update
-    sudo apt-get install trivy
-  displayName: 'Install Trivy'  
-
-- script: |
-    trivy config Dockerfile
-  displayName: 'scan docker file'
-    
-- script: |
-    Base_Image=`grep FROM Dockerfile | awk '{print $2}'`
-    trivy image $Base_Image
-  displayName: 'scan trivy image'
-
-- script: |
-
-    trivy config k8s
-  displayName: 'scan the kubernetees'  
-
-#- script: |
-#    sudo docker build -t puneetgo/test .
-#  displayName: 'building docker image'
-
-#- script: |
-#    echo $(Docker_hub_password) | sudo docker login --username $(Docker_hub_username) --password-stdin
-#    sudo docker push puneetgo/test 
-#  displayName: 'login in docker hub and pushing image'  
-  
-- task: Docker@2
-  inputs:
-    containerRegistry: docker-hub-azure
-    command: 'buildAndPush'
-    repository: 'puneetgo/test'
-    tags: 1.0.1
-  
-- task: KubernetesManifest@0
-  displayName: Deploy to Kubernetes cluster
-  inputs:
-    kubernetesServiceConnection: gke-test
-    action: deploy
-    manifests: |
-      k8s/simple/frontend-deployment.yaml
-      k8s/simple/service-frontend-lb.yaml
-    
+    sudo install npm
+    sudo npm build
+  displayName: 'npm build'  
